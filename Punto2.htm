@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Titulo</title>
+        <style>
+            html, body { margin: 0; padding: 0; overflow: hidden; }
+            #text {
+                position: absolute;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                color: #FFFFFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="text">Titulo<br/>
+            Subtitulo<br/>
+            Descripción<br/>
+        </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r94/three.min.js"></script>
+    <script>
+      // Definir la función esParaleloAEjePrincipal
+      function esParaleloAEjePrincipal(vector) {
+        // Crear vectores unitarios para los ejes principales
+        const ejeX = new THREE.Vector3(1, 0, 0);
+        const ejeY = new THREE.Vector3(0, 1, 0);
+        const ejeZ = new THREE.Vector3(0, 0, 1);
+
+        // Calcular el ángulo entre el vector y cada uno de los ejes principales
+        const anguloX = vector.angleTo(ejeX);
+        const anguloY = vector.angleTo(ejeY);
+        const anguloZ = vector.angleTo(ejeZ);
+
+        // Si el ángulo entre el vector y alguno de los ejes principales es cercano a 0 o a PI,
+        // entonces el vector es paralelo a ese eje
+        if (anguloX === 0 || anguloX === Math.PI ||
+            anguloY === 0 || anguloY === Math.PI ||
+            anguloZ === 0 || anguloZ === Math.PI) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      const vector = new THREE.Vector3(1, 0, 0); // Vector a verificar
+      const resultado = esParaleloAEjePrincipal(vector); // Llamada a la función
+      console.log(resultado); // Imprime true si el vector es paralelo a algún eje principal, false en caso contrario
+    </script>
+  </body>
+</html>
